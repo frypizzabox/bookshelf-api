@@ -1,0 +1,17 @@
+{
+  "env": {
+    "browser": false,
+    "node": true,
+    "commonjs": true,
+    "shared-node-browser": false,
+    "es6": true,
+    "jest": false
+  },
+  "extends": "airbnb-base/legacy",
+  "settings": {},
+  "rules": {},
+  "globals": {},
+  "parserOptions": {
+    "sourceType": "module"
+  }
+}
