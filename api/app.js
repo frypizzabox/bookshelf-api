@@ -5,7 +5,7 @@ import routes from './routes';
 
 // server constants
 const port = 5000;
-const dbUrl = 'mongodb://localhost/qliro';
+const dbUrl = 'mongodb://api:bookshelfRules2018@ds249992.mlab.com:49992/bookshelf';
 
 // connect mongoose to database
 mongoose.connect(dbUrl, { useNewUrlParser: true })

@@ -1,4 +1,5 @@
 import express from 'express';
+import Book from '../models/Book';
 
 const router = express.Router();
 
@@ -26,15 +27,22 @@ const createBook = async (req, res) => {
     if (errors.length > 0) {
       throw new Error(errors.join(', '));
     }
+
+    return new Book({
+      title: req.body.title,
+      author: req.body.author,
+      isbn: req.body.isbn
+    })
+      .save()
+      .then(book => res.status(200).json(book));
   } catch (e) {
-    return res.status(500).send({
+    return res.status(500).json({
       title: req.body.title,
       author: req.body.author,
       isbn: req.body.isbn,
       error: e.message
     });
   }
-  return res.send('ok');
 };
 
 router.get('/', getBooks);

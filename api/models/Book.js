@@ -12,7 +12,11 @@ const bookSchema = new moongose.Schema({
   isbn: {
     type: String,
     required: true
+  },
+  date: {
+    type: Date,
+    default: Date.now
   }
 });
 
-moongose.model('books', bookSchema);
+export default moongose.model('books', bookSchema);
