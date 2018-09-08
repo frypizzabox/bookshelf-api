@@ -4,7 +4,7 @@ import bodyParser from 'body-parser';
 import routes from './routes';
 
 // server constants
-const port = 5000;
+const port = process.env.PORT || 5000;
 const dbUrl = 'mongodb://api:bookshelfRules2018@ds249992.mlab.com:49992/bookshelf';
 
 // connect mongoose to database
