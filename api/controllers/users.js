@@ -1,11 +1,11 @@
 import express from 'express';
-import Book from '../models/Book';
+import User from '../models/User';
 
 const router = express.Router();
 
-const getBooks = async (req, res) => {
+const getUsers = async (req, res) => {
   try {
-    return Book.find()
+    return User.find()
       .then(data => res.status(200).json(data))
       .catch(e => res.status(500).json(e));
   } catch (e) {
@@ -13,9 +13,9 @@ const getBooks = async (req, res) => {
   }
 };
 
-const getBook = async (req, res) => {
+const getUser = async (req, res) => {
   try {
-    return Book.findOne({
+    return User.findOne({
       _id: req.params.id
     })
       .then(data => res.status(200).json(data))
@@ -25,12 +25,12 @@ const getBook = async (req, res) => {
   }
 };
 
-const createBook = async (req, res) => {
+const createUser = async (req, res) => {
   try {
-    return new Book({
-      title: req.body.title,
-      author: req.body.author,
-      isbn: req.body.isbn
+    return new User({
+      displayName: req.body.displayName,
+      email: req.body.email,
+      phoneNumber: req.body.phoneNumber
     })
       .save()
       .then(data => res.status(200).json(data))
@@ -40,18 +40,18 @@ const createBook = async (req, res) => {
   }
 };
 
-const updateBook = async (req, res) => {
+const updateUser = async (req, res) => {
   try {
-    return Book.findOne({
+    return User.findOne({
       _id: req.params.id
     })
-      .then(book => {
-        const newBook = {
-          title: req.body.title ? req.body.title : book.title,
-          author: req.body.author ? req.body.author : book.author,
-          isbn: req.body.isbn ? req.body.isbn : book.isbn
+      .then(user => {
+        const newUser = {
+          displayName: req.body.displayName ? req.body.displayName : user.displayName,
+          email: req.body.email ? req.body.email : user.email,
+          phoneNumber: req.body.phoneNumber ? req.body.phoneNumber : user.phoneNumber
         };
-        book.save(newBook)
+        User.save(newUser)
           .then(data => res.status(200).json(data))
           .catch(e => res.status(500).json(e));
       });
@@ -60,9 +60,9 @@ const updateBook = async (req, res) => {
   }
 };
 
-const deleteBook = async (req, res) => {
+const deleteUser = async (req, res) => {
   try {
-    return Book.deleteOne({
+    return User.deleteOne({
       _id: req.params.id
     })
       .then(data => res.status(200).json(data))
@@ -72,10 +72,10 @@ const deleteBook = async (req, res) => {
   }
 };
 
-router.get('/', getBooks);
-router.get('/:id', getBook);
-router.post('/', createBook);
-router.put('/:id', updateBook);
-router.delete('/:id', deleteBook);
+router.get('/', getUsers);
+router.get('/:id', getUser);
+router.post('/', createUser);
+router.put('/:id', updateUser);
+router.delete('/:id', deleteUser);
 
 export default router;

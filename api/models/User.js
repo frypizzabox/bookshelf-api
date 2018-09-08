@@ -1,17 +1,17 @@
 import moongose from 'mongoose';
 
-const bookSchema = new moongose.Schema({
-  title: {
+const userSchema = new moongose.Schema({
+  displayName: {
     type: String,
     required: true
   },
-  author: {
+  email: {
     type: String,
     required: true
   },
-  isbn: {
+  phoneNumber: {
     type: String,
-    required: true
+    required: false
   },
   updated: {
     type: Date,
@@ -19,4 +19,4 @@ const bookSchema = new moongose.Schema({
   }
 });
 
-export default moongose.model('books', bookSchema);
+export default moongose.model('users', userSchema);
