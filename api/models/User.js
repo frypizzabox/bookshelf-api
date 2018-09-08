@@ -10,9 +10,12 @@ const userSchema = new moongose.Schema({
     required: true
   },
   phoneNumber: {
-    type: String,
-    required: false
+    type: String
   },
+  loanedBooks: [{
+    type: moongose.Schema.ObjectId,
+    ref: 'books'
+  }],
   updated: {
     type: Date,
     default: Date.now
