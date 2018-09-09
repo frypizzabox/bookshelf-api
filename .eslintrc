@@ -9,7 +9,9 @@
   },
   "extends": "airbnb-base/legacy",
   "settings": {},
-  "rules": {},
+  "rules": {
+    "no-underscore-dangle": [2, { "allow": ["_id"]}]
+  },
   "globals": {},
   "parserOptions": {
     "sourceType": "module",

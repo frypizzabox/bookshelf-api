@@ -83,9 +83,14 @@ const loanBook = async (req, res) => {
           _id: req.body.bookId
         })
           .then(book => {
-            user.loanedBooks.addToSet(book);
+            user.loanedBooks.addToSet(book._id);
             user.save()
-              .then(data => res.status(200).json(data))
+              .then(() => {
+                book.loanedToUser.addToSet(user._id);
+                book.save()
+                  .then(() => res.status(200).json(user))
+                  .catch(e => res.status(500).json(e));
+              })
               .catch(e => res.status(500).json(e));
           })
           .catch(e => res.status(500).json(e));
@@ -106,9 +111,14 @@ const returnBook = async (req, res) => {
           _id: req.body.bookId
         })
           .then(book => {
-            user.loanedBooks.pull(book);
+            user.loanedBooks.pull(book._id);
             user.save()
-              .then(data => res.status(200).json(data))
+              .then(() => {
+                book.loanedToUser.pull(user._id);
+                book.save()
+                  .then(() => res.status(200).json(user))
+                  .catch(e => res.status(500).json(e));
+              })
               .catch(e => res.status(500).json(e));
           })
           .catch(e => res.status(500).json(e));

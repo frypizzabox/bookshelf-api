@@ -13,10 +13,10 @@ const bookSchema = new moongose.Schema({
     type: String,
     required: true
   },
-  loanedToUser: {
+  loanedToUser: [{
     type: moongose.Schema.ObjectId,
     ref: 'users'
-  },
+  }],
   updated: {
     type: Date,
     default: Date.now
