@@ -15,6 +15,14 @@ mongoose.connect(dbUrl, { useNewUrlParser: true })
 // start express application
 const app = express();
 
+app.all('*', (req, res, next) => {
+  var origin = req.get('origin');
+  res.header('Access-Control-Allow-Origin', origin);
+  res.header('Access-Control-Allow-Headers', 'X-Requested-With');
+  res.header('Access-Control-Allow-Headers', 'Content-Type');
+  next();
+});
+
 // parse application/x-www-form-urlencoded middleware
 app.use(bodyParser.urlencoded({ extended: false }));
 
