@@ -1,12 +1,12 @@
 {
-  "name": "bookshelf",
+  "name": "bookshelf-api",
   "version": "1.0.0",
   "description": "A Test Application",
-  "main": "./api/app.js",
+  "main": "./src/app.js",
   "scripts": {
     "babel-node": "babel-node --presets=/*a*/ --ignore='foo|bar|baz'",
-    "start": "babel-node ./api/app.js",
-    "dev": "./node_modules/nodemon/bin/nodemon.js --exec babel-node ./api/app.js",
+    "start": "babel-node ./src/app.js",
+    "dev": "./node_modules/nodemon/bin/nodemon.js --exec babel-node ./src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Adalberto Aucar Kutuxidis",
